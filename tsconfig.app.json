@@ -1,0 +1,38 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",                  // Use the latest ECMAScript features
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "module": "ESNext",                  // Use ESNext module system
+    "moduleResolution": "Node",          // Node-style module resolution
+    "strict": true,                      // Enable all strict type-checking options
+    "jsx": "react-jsx",                  // Use React JSX transform
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,                      // Do not emit compiled files
+    "types": ["vite/client", "node"],    // Include types for Vite and Node.js
+    "baseUrl": ".",                      // Base directory for non-relative module names
+    "paths": {
+      "@/*": ["src/*"]                   // Path alias for cleaner imports
+    },
+    "composite": true,
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "useDefineForClassFields": true,
+    
+    "allowImportingTsExtensions": true,
+    "moduleDetection": "force",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/config.ts"  // Add this line
+  ],
+  "exclude": ["node_modules"]
+}
