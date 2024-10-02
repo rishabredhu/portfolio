@@ -26,6 +26,7 @@
     "@react-three/postprocessing": "^2.16.2",
     "@shadcn/ui": "^0.0.4",
     "@types/babylonjs": "^2.3.31",
+    "@vercel/speed-insights": "^1.0.12",
     "babylonjs": "^7.27.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

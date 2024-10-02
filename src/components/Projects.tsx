@@ -94,7 +94,7 @@ export default function Projects() {
       setInputMessage('')
       // Simulate bot response
       setTimeout(() => {
-        setMessages(prev => [...prev, { sender: 'bot', text: "Fascinating query. The cosmic threads of knowledge are aligning to formulate a response worthy of your intellect." }])
+        setMessages(prev => [...prev, { sender: 'bot', text: "Fascinating query. The bot is aligning to formulate a response." }])
       }, 1000)
     }
   }
@@ -221,41 +221,39 @@ export default function Projects() {
       <div className="relative z-10">
         {/* Header section */}
         <header className="mb-8 text-center">
-          <motion.h1 
-            initial={{ opacity: 0, y: -50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="text-6xl font-bold mb-2 tracking-widest relative"
-          >
-            {Array.from("RISHAB SINGH").map((letter, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="inline-block"
-                style={{
-                  background: `linear-gradient(to bottom right, #FFA500, #FF4500)`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  textShadow: '0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(255,165,0,0.1)',
-                  fontSize: '4rem', // Increase font size for better visibility
-                  margin: '0 0.51rem', // Add margin between letters for better spacing
-                  filter: 'hue-rotate(90deg) saturate(200%)' // Apply holographic effect
-                }}
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </motion.h1>
+         
+          
           <motion.p 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-2xl text-gray-400 font-light tracking-wide mb-4"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.05, rotateX: 10, rotateY: 10 }} // Added 3D rotation on hover
+            transition={{ 
+              duration: 1,
+              type: "spring",
+              stiffness: 300,
+              damping: 10
+            }}
+            className="text-3xl text-gray-200 font-light tracking-wide mb-8 inline-block" // Added inline-block for better 3D effect
+            style={{
+              background: 'linear-gradient(to bottom right, #FFA500, #00CED1)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(0,206,209,0.1)',
+              fontSize: '3.5rem',
+              lineHeight: '1.2',
+              padding: '0.5rem 0',
+              margin: '0.5rem 0',
+              filter: 'hue-rotate(90deg) saturate(200%)',
+              transformStyle: 'preserve-3d', // Enable 3D transformations
+              perspective: '1000px' // Add perspective for 3D effect
+            }}
           >
-            "The self is hidden in the heart of all creatures. It is smaller than the smallest atom, yet greater than the greatest spaces."
+            "Blending AI Brains with Human Creativity"
           </motion.p>
+          <p>
+
+            
+          </p>
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -270,148 +268,130 @@ export default function Projects() {
 
         <AnimatePresence>
           {isExperienceExpanded && (
-            <motion.main
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-              className="max-w-4xl mx-auto bg-black/50 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-800 mb-8"
-              style={{ boxShadow: '0 0 30px rgba(255,165,0,0.1), inset 0 0 30px rgba(255,165,0,0.05)' }}
-            >
-              <section className="p-8 relative">
-                {/* Background gradient */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-900/10"></div>
-                
-                {/* Section title */}
-                <motion.h2 
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="text-3xl font-semibold text-gray-300 mb-6 border-b border-gray-700 pb-2 relative"
-                >
-                  Some Information About Me:
-                </motion.h2>
-                
-                {/* Professional Expertise */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  <h3 className="text-2xl font-medium text-gray-300 mb-4">Professional Expertise</h3>
-                  <ul className="space-y-3 text-gray-400 font-light relative">
-                    {[
-                      {
-                        icon: <Cpu className="w-5 h-5 mr-2 text-orange-500/50" />,
-                        text: "Developed <span class='text-orange-500 glow-text'>high-throughput data pipeline</span> processing <span class='text-orange-500 glow-text'>5,000+ records/second</span> using <span class='text-orange-500 glow-text'>Apache Kafka, Faust, and Spark</span>; implemented <span class='text-orange-500 glow-text'>AWS Redshift and S3</span> for data warehousing, reducing query times by 40%."
-                      },
-                      {
-                        icon: <Zap className="w-5 h-5 mr-2 text-orange-500/50" />,
-                        text: "Utilized <span class='text-orange-500 glow-text'>Airflow, Docker, and NLP libraries</span> to analyze unstructured textual data for <span class='text-orange-500 glow-text'>sentiment analysis and topic modeling</span>; developed predictive models achieving <span class='text-orange-500 glow-text'>20% resource optimization</span>."
-                      },
-                      {
-                        icon: <Brain className="w-5 h-5 mr-2 text-orange-500/50" />,
-                        text: "Led development of new features for <span class='text-orange-500 glow-text'>LLM-based product</span>; fine-tuned <span class='text-orange-500 glow-text'>PyTorch-based similarity search model</span>, improving face detection accuracy by 12%."
-                      },
-                      {
-                        icon: <Code className="w-5 h-5 mr-2 text-orange-500/50" />,
-                        text: "Contributed to <span class='text-orange-500 glow-text'>AI Hawk</span>, an open-source project with <span class='text-orange-500 glow-text'>11k+ GitHub stars</span>; implemented <span class='text-orange-500 glow-text'>WebRPC service in Go</span> using gRPC for real-time sensor data transmission."
-                      }
-                    ].map((item, index) => (
-                      <motion.li
-                        key={index}
-                        className="flex items-start"
-                        whileHover={{ scale: 1.02, color: "#FFA500" }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                      >
-                        {item.icon}
-                        <span className="text-gray-400 text-sm" dangerouslySetInnerHTML={{ __html: item.text }}></span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                </motion.div>
-                {/* Spacer */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="my-12 border-t border-gray-700 opacity-30"
-                />
-                {/* Work Locations
-                <motion.div 
+            <>
+              <motion.main
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                className="max-w-4xl mx-auto bg-black/50 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden border border-gray-800 mb-8"
+                style={{ boxShadow: '0 0 30px rgba(255,165,0,0.1), inset 0 0 30px rgba(255,165,0,0.05)' }}
+              >
+                <section className="p-8 relative">
+                  {/* Background gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-900/10"></div>
+                  
+                  {/* Section title */}
+                  <motion.h2 
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="text-3xl font-semibold text-gray-300 mb-6 border-b border-gray-700 pb-2 relative"
+                    style={{
+                      background: `linear-gradient(to bottom right, #FFA500, #00CED1)`,
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      textShadow: '0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(0,206,209,0.1)',
+                      filter: 'hue-rotate(90deg) saturate(200%)'
+                    }}
+                  >
+                    Candidate ID: Rishab Singh
+                  </motion.h2>
+                  
+                  {/* Professional Expertise */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                  >
+                    <h3 className="text-2xl font-medium text-gray-300 mb-4">Some Achievements to be proud of</h3>
+                    <ul className="space-y-3 text-gray-400 font-light relative">
+                      {[
+                        {
+                          icon: <Cpu className="w-5 h-5 mr-2 text-orange-500/50" />,
+                          text: "Developed <span class='text-orange-500 glow-text'>high-throughput data pipeline</span> processing <span class='text-orange-500 glow-text'>5,000+ records/second</span> using <span class='text-orange-500 glow-text'>Apache Kafka, and Spark</span>; implemented <span class='text-orange-500 glow-text'>AWS Redshift and S3</span> for data warehousing, reducing query times by 40%."
+                        },
+                        {
+                          icon: <Zap className="w-5 h-5 mr-2 text-orange-500/50" />,
+                          text: "Utilized <span class='text-orange-500 glow-text'>Airflow, Docker, and NLP libraries</span> to analyze unstructured textual data for <span class='text-orange-500 glow-text'>sentiment analysis and topic modeling</span>; developed predictive models achieving <span class='text-orange-500 glow-text'>20% resource optimization</span>."
+                        },
+                        {
+                          icon: <Brain className="w-5 h-5 mr-2 text-orange-500/50" />,
+                          text: "Led development of new features for <span class='text-orange-500 glow-text'>LLM-based product</span>; fine-tuned <span class='text-orange-500 glow-text'>PyTorch-based similarity search model</span>, improving face detection accuracy by 12%."
+                        },
+                        {
+                          icon: <Code className="w-5 h-5 mr-2 text-orange-500/50" />,
+                          text: "Contributed to <span class='text-orange-500 glow-text'>AI Hawk</span>, an open-source project with <span class='text-orange-500 glow-text'>11k+ GitHub stars</span>; implemented <span class='text-orange-500 glow-text'>WebRPC service in Go</span> using gRPC for real-time sensor data transmission."
+                        }
+                      ].map((item, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-start"                          whileHover={{ scale: 1.02, color: "#FFA500" }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          {item.icon}
+                          <span className="text-gray-400 text-sm" dangerouslySetInnerHTML={{ __html: item.text }}></span>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                  {/* Spacer */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="my-12 border-t border-gray-700 opacity-30"
+                  />
+                  
+                  
+            {/* Skills Section */}
+            <section>
+                  <motion.div 
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
-                  className="mb-6"
-                >
-                  <h3 className="text-2xl font-semibold text-gray-300 mb-4">Work Locations</h3>
-                  <div className="flex flex-wrap gap-4">
-                    {[
-                      'Bay-Area/SF',
-                      'NYC',
-                      'London/UK',
-                    ].map((location) => (
-                      <motion.div
-                        key={location}
-                        className="text-gray-300 text-sm bg-gray-800/50 px-3 py-1 rounded-full"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ duration: 0.5 }}
-                      >
-                        {location}
-                      </motion.div>
-                    ))}
+                  className="mb-12"
+              >
+                  <h3 className="text-2xl font-semibold text-gray-200 mb-4">Skills</h3>
+      {/*             
+                  <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-orange-500"></span>
+                  </h3> */}
+                  <div className="relative w-full max-w-2xl aspect-[4/3] perspective-1000 mx-auto">
+                  <div className="relative w-full h-full transform-style-preserve-3d">
+                      <AnimatePresence>
+                      {skillCategories.map((category, index) => (
+                          index === activeSkillIndex && (
+                          <RetroCard key={category.name} category={category} isActive={index === activeSkillIndex} />
+                          )
+                      ))}
+                      </AnimatePresence>
                   </div>
-                </motion.div> */}
-                
-                
-          {/* Skills Section */}
-          <section>
-                <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="mb-12"
-            >
-                <h3 className="text-2xl font-semibold text-gray-200 mb-4">Skills</h3>
-    {/*             
-                <span className="absolute -bottom-2 left-0 w-full h-0.5 bg-orange-500"></span>
-                </h3> */}
-                <div className="relative w-full max-w-2xl aspect-[4/3] perspective-1000 mx-auto">
-                <div className="relative w-full h-full transform-style-preserve-3d">
-                    <AnimatePresence>
-                    {skillCategories.map((category, index) => (
-                        index === activeSkillIndex && (
-                        <RetroCard key={category.name} category={category} isActive={index === activeSkillIndex} />
-                        )
-                    ))}
-                    </AnimatePresence>
-                </div>
-                <CRTOverlay />
-                </div>
-                <div className="mt-8 flex justify-center items-center space-x-4">
-                <button
-                    onClick={() => handleCardFlip(-1)}
-                    className="p-2 border border-orange-500 rounded-full hover:bg-orange-500 hover:text-black transition-colors duration-300"
-                    aria-label="Previous skill category"
-                >
-                    <ChevronLeft className="w-6 h-6" />
-                </button>
-                <span className="font-mono text-lg text-orange-500">
-                    {activeSkillIndex + 1} / {skillCategories.length}
-                </span>
-                <button
-                    onClick={() => handleCardFlip(1)}
-                    className="p-2 border border-orange-500 rounded-full hover:bg-orange-500 hover:text-black transition-colors duration-300"
-                    aria-label="Next skill category"
-                >
-                    <ChevronRight className="w-6 h-6" />
-                </button>
-                </div>
-            </motion.div>
-           </section>
-              </section>
-            </motion.main>
+                  <CRTOverlay />
+                  </div>
+                  <div className="mt-8 flex justify-center items-center space-x-4">
+                  <button
+                      onClick={() => handleCardFlip(-1)}
+                      className="p-2 border border-orange-500 rounded-full hover:bg-orange-500 hover:text-black transition-colors duration-300"
+                      aria-label="Previous skill category"
+                  >
+                      <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  <span className="font-mono text-lg text-orange-500">
+                      {activeSkillIndex + 1} / {skillCategories.length}
+                  </span>
+                  <button
+                      onClick={() => handleCardFlip(1)}
+                      className="p-2 border border-orange-500 rounded-full hover:bg-orange-500 hover:text-black transition-colors duration-300"
+                      aria-label="Next skill category"
+                  >
+                      <ChevronRight className="w-6 h-6" />
+                  </button>
+                  </div>
+              </motion.div>
+             </section>
+                </section>
+              </motion.main>
+            </>
           )}
         </AnimatePresence>
 
@@ -463,7 +443,7 @@ export default function Projects() {
                 />
                 <Button type="submit" className="bg-orange-900/30 text-gray-200 hover:bg-orange-800/30 transition-colors duration-300">
                   <Send className="w-4 h-4 mr-2" />
-                  Transmit
+                  Send
                 </Button>
               </form>
             </motion.div>

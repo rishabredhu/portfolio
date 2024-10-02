@@ -10,16 +10,15 @@ import SpaceWarpCanvas from './SpaceWarp';
  * 
  * This component creates a 3D scene using Three.js and loads a .glb file
  * to form a background. It includes debugging information logged to the console
- * to help identify issues with model rendering. The loaded model remains stationary.
- * 
- * Note: The model is not rotating or hovering. The initial rotation is set once when the model is loaded,
- * and it remains in that position.
+ * to help identify issues with model rendering. The loaded model will hover back and forth.
+ * Additionally, the model will change direction as the user scrolls down the page.
  */
 const Scene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const modelRef = useRef<THREE.Group | null>(null);
+  const scrollDirectionRef = useRef<number>(1); // 1 for down, -1 for up
 
   useEffect(() => {
     // Scene setup
@@ -54,8 +53,8 @@ const Scene: React.FC = () => {
         
         // Adjust the position and scale of the model as needed
         model.scale.set(1, 1, 1); // Increased scale for a closer view
-        model.position.set(1, -0.8,3); // Moved closer to the camera
-        model.rotation.set(32, Math.PI / 6, 0.01); // Initial rotation set here
+        model.position.set(0.2, -0.9, 3); // Moved closer to the camera
+        model.rotation.set(32, Math.PI / 6, 0.001); // Initial rotation set here
 
         scene.add(model);
         
@@ -94,6 +93,12 @@ const Scene: React.FC = () => {
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
+      
+      // Make the model hover back and forth
+      if (modelRef.current) {
+        modelRef.current.position.y += scrollDirectionRef.current * 0.0001; // Adjust the speed and range of the hover effect
+      }
+
       renderer.render(scene, camera);
     };
     animate();
@@ -106,9 +111,16 @@ const Scene: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
+    // Handle scroll direction change
+    const handleScroll = (event: WheelEvent) => {
+      scrollDirectionRef.current = event.deltaY > 0 ? 1 : -1;
+    };
+    window.addEventListener('wheel', handleScroll);
+
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('wheel', handleScroll);
       mountRef.current?.removeChild(renderer.domElement);
     };
   }, []);

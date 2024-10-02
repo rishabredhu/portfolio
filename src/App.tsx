@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import LandingPage from './components/LandingPage';
-import SpaceScene from './components/SpaceScene';
+
 import './App.css';
 import FlowerNavbar from './components/FlowerNavbar'; // Import the new FlowerNavbar component
 import BabylonCanvas from './components/Babylonjs';
 // Import necessary types from Three.js
-import Navbar from './components/FlowerNavbar';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Vector3 } from 'three';
 import Scene from './components/Scene';
 // Define props interface for SpaceScene
@@ -33,13 +33,12 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLandingPageLoaded(true);
-    }, 5000); // Simulates a 5-second loading delay
+    }, 4000); // Simulates a 5-second loading delay
 
     return () => clearTimeout(timer); // Cleanup the timer when the component unmounts
   }, []);
 
   return (
-    
     <div className="app-container">
       <main className="content-area">
         {/* Render either the LandingPage or the Spaceman and AboutMe components based on loading state */}
@@ -62,6 +61,8 @@ function App() {
           </>
         )}
       </main>
+      {/* Add SpeedInsights component to the layout */}
+      <SpeedInsights />
     </div>
   )
 };
