@@ -1,0 +1,25 @@
+{
+  "short_name": "Rishab's Portfolio",
+  "name": "Rishab Singh's Portfolio",
+  "icons": [
+    {
+      "src": "./assets/location/sf.png",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "l./assets/location/nyc.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "./assets/location/london.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

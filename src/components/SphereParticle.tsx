@@ -9,10 +9,16 @@ import * as THREE from 'three';
  * 
  * @component
  * @example
- * <SphereParticle />
+ * <SphereParticle depth={1.8} />
+ * 
+ * @param {number} depth - The depth of the camera from the particles.
  */
 
-const Sphere: React.FC = () => {
+interface SphereProps {
+  depth: number;
+}
+
+const Sphere: React.FC<SphereProps> = ({ depth }) => {
   const mountRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -24,7 +30,7 @@ const Sphere: React.FC = () => {
 
     const init = () => {
       scene = new THREE.Scene();
-      camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.01, 1000);
+      camera = new THREE.PerspectiveCamera(105, window.innerWidth / window.innerHeight, 0.01, 1000);
       renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       if (mountRef.current) {
@@ -34,24 +40,35 @@ const Sphere: React.FC = () => {
       const geometry = new THREE.BufferGeometry();
       const vertices = [];
       const colors = [];
-      const particleCount = 50000; // Increased particle count for fuller effect
+      const particleCount = 900; // Increased particle count for fuller effect
 
       for (let i = 0; i < particleCount; i++) {
-        vertices.push(Math.random() * 2 - 1);
-        vertices.push(Math.random() * 2 - 1);
-        vertices.push(Math.random() * 2 - 1);
+        // Generate random spherical coordinates
+        const theta = Math.random() * 2 * Math.PI; // Random angle around the sphere
+        const phi = Math.acos(2 * Math.random() - 1); // Random angle from the pole
 
-        // Rich shades of purple
-        colors.push(0.5 + Math.random() * 0.5); // R
-        colors.push(0); // G
-        colors.push(0.5 + Math.random() * 0.5); // B
+        // Convert spherical coordinates to Cartesian coordinates
+        const x = Math.sin(phi) * Math.cos(theta);
+        const y = Math.sin(phi) * Math.sin(theta);
+        const z = Math.cos(phi);
+
+        // Push the coordinates to the vertices array
+        vertices.push(x);
+        vertices.push(y);
+        vertices.push(z);
+
+        // Create a gradient effect with colors
+        const colorFactor = (z + 1) / 2; // Normalize z to range [0, 1]
+        colors.push(0.05 + 0.5 * colorFactor); // R
+        colors.push(0.2 * colorFactor); // G
+        colors.push(1 - 0.5 * colorFactor); // B
       }
 
       geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
       geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
 
       const material = new THREE.PointsMaterial({
-        size: 0.0005,
+        size: 0.01,
         vertexColors: true,
         blending: THREE.AdditiveBlending,
         transparent: true
@@ -60,7 +77,7 @@ const Sphere: React.FC = () => {
       particles = new THREE.Points(geometry, material);
       scene.add(particles);
 
-      camera.position.z = 1.8; // Keep the z distance at 75
+      camera.position.z = depth; // Use the depth prop here
     };
 
     const animate = () => {
@@ -120,7 +137,7 @@ const Sphere: React.FC = () => {
         mountRef.current.removeChild(renderer.domElement);
       }
     };
-  }, []);
+  }, [depth]);
 
   return <div ref={mountRef} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />;
 };
@@ -129,10 +146,10 @@ const Sphere: React.FC = () => {
  * 
  * This is the main component that combines all other components to create the landing page.
  */
-const SphereParticle: React.FC = () => {
+const SphereParticle: React.FC<SphereProps> = ({ depth }) => {
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh', overflow: 'hidden' }}>
-      <Sphere />
+      <Sphere depth={depth} />
       
     </div>
   );

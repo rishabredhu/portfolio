@@ -5,13 +5,7 @@ import { OrbitControls, useAnimations, useGLTF } from '@react-three/drei'
 import { Mesh, Vector3 } from 'three'
 import { GLTF } from 'three-stdlib'
 import * as THREE from 'three'
-import SpaceWarpCanvas from './SpaceWarp'
-import FlowerNavbar from './FlowerNavbar'
-import AboutMe from './AboutMe'
-import Navbar from '@/components_deprecated/NavBar'
-import Projects from './Projects'
-import Horse from './Horse' // Assuming you have a Horse component
-import ChatBot from './ChatBot.tsx' // Assuming you have a ChatBot component
+
 
 // Define the type for our GLTF result
 type GLTFResult = GLTF & {

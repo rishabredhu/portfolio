@@ -1,0 +1,355 @@
+/* Import Tailwind's base styles */
+@import 'tailwindcss/base';
+
+/* Import Tailwind's component styles */
+@import 'tailwindcss/components';
+
+/* Import Tailwind's utility styles */
+@import 'tailwindcss/utilities';
+
+/* Define custom CSS variables */
+
+/**
+ * Root CSS variables and global styles
+ * 
+ * This section defines the root CSS variables and global styles for the webpage.
+ * The font-family has been updated to use 'Roboto', a more modern and readable font.
+ */
+
+ 
+:root {
+  font-family: 'Roboto', sans-serif; /* Updated font-family to 'Roboto' */
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  background-color: #1a202c; /* Equivalent to bg-gray-900 */
+  color: #f7fafc; /* Equivalent to text-gray-100 */
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/**
+ * Button styles
+ * 
+ * This section defines the styles for buttons used throughout the webpage.
+ * The button has a rounded appearance, a modern background color, and smooth transition effects.
+ */
+
+/**
+ * Button styles
+ * 
+ * This section defines the styles for buttons used throughout the webpage.
+ * The button has a rounded appearance, a modern background color, and smooth transition effects.
+ */
+button {
+  border-radius: 30px; /* Rounded corners for a modern look */
+  border: 1px solid transparent; /* Transparent border for smooth transition */
+  padding: 0.6em 1.2em; /* Padding for better spacing */
+  font-size: 1.3em; /* Standard font size */
+  font-weight: 500; /* Medium font weight for better readability */
+  font-family: inherit; /* Inherit font-family from parent */
+  background-color: #6769d4; /* Modern background color */
+  color: #ffffff; /* White text color for better contrast */
+  cursor: pointer; /* Pointer cursor to indicate clickable element */
+  transition: background-color 0.25s, border-color 0.25s, transform 0.25s; /* Smooth transition effects */
+}
+
+
+/* Custom styles */
+body {
+  @apply bg-gray-900 text-gray-100;
+}
+
+.font-tech {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-futuristic {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+
+
+
+/* .experienceSection {
+  max-width: 56rem;
+  margin: 0 auto 2rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 30px rgba(255,165,0,0.1), inset 0 0 30px rgba(255,165,0,0.05);
+  border: 1px solid #1F2937;
+  overflow: hidden;
+}
+
+.experienceContent {
+  padding: 4rem;
+  position: relative;
+} */
+/* 
+.backgroundGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 165, 0, 0.1));
+}
+
+.sectionTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #D1D5DB;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #374151;
+  position: relative;
+  background: linear-gradient(to bottom right, #FFA500, #00CED1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(255,165,0,0.3), 0 0 40px rgba(0,206,209,0.1);
+  filter: hue-rotate(90deg) saturate(200%);
+} */
+.achievementsList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.achievementItem {
+  display: flex;
+  align-items: flex-start;
+  color: #9CA3AF;
+  font-weight: 300;
+  font-size: 0.875rem;
+  transition: all 0.3s;
+}
+
+.achievementItem:hover {
+  transform: scale(1.02);
+  color: #FFA500;
+}
+
+.achievementIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+  color: rgba(255, 165, 0, 0.5);
+} 
+
+
+.glowText {
+  color: #FFA500;
+} 
+
+.spacer {
+  margin: 3rem 0;
+  border-top: 1px solid #374151;
+  opacity: 0.3;
+}
+
+.skillsSection {
+  margin-bottom: 3rem;
+}
+
+.skillsTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #E5E7EB;
+  margin-bottom: 1rem;
+}
+
+.skillCard {
+  position: relative;
+  width: 100%;
+  max-width: 32rem;
+  aspect-ratio: 4 / 3;
+  perspective: 1000px;
+  margin: 0 auto;
+}
+
+.skillCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.skillCardContent {
+  position: absolute;
+  inset: 0;
+  background-color: black;
+  border-radius: 0.125rem;
+  border: 2px solid #FFA500;
+  padding: 1rem;
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.3), inset 0 0 5px rgba(255, 165, 0, 0.2);
+  backface-visibility: hidden;
+}
+
+.skillCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #FFA500;
+}
+
+.skillCardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: monospace;
+  color: #FFA500;
+}
+
+.skillCardIcon {
+  width: 2rem;
+  height: 2rem;
+  color: #FFA500;
+}
+
+.skillGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.skillItem {
+  background-color: black;
+  border: 1px solid #FFA500;
+  border-radius: 0.125rem;
+  padding: 0.5rem;
+  text-align: center;
+  transform: scale(1);
+  transition: all 0.3s;
+}
+
+.skillItem:hover {
+  transform: scale(1.05);
+  border-color: #FFA400;
+}
+
+.skillItemText {
+  font-size: 0.875rem;
+  font-family: monospace;
+  color: #FFA500;
+}
+
+.skillItemText:hover {
+  color: #FFA400;
+}
+
+.crtOverlay {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.crtGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 165, 0, 0.05), rgba(255, 165, 0, 0.1));
+}
+
+.crtScanlines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(255, 165, 0, 0.03) 0px, rgba(255, 165, 0, 0.03) 1px, transparent 1px, transparent 2px);
+  background-size: 100% 2px;
+}
+
+.skillNavigation {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.skillNavigationButton {
+  padding: 0.5rem;
+  border: 1px solid #FFA500;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+
+.skillNavigationButton:hover {
+  background-color: #FFA500;
+  color: black;
+}
+
+.skillNavigationText {
+  font-family: monospace;
+  font-size: 1.125rem;
+  color: #FFA500;
+}
+
+.chatbotSection {
+  max-width: 56rem;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 30px rgba(255,165,0,0.1), inset 0 0 30px rgba(255,165,0,0.05);
+  border: 1px solid #1F2937;
+  overflow: hidden;
+}
+
+.chatbotContent {
+  padding: 2rem;
+  position: relative;
+}
+
+.chatbotGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(255, 165, 0, 0.2), transparent);
+}
+
+.chatbotTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #D1D5DB;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #374151;
+  position: relative;
+}
+
+.chatbotButton {
+  width: 100%;
+  padding: 1rem 0;
+  background-color: rgba(255, 165, 0, 0.3);
+  color: #E5E7EB;
+  transition: background-color 0.3s;
+}
+
+.chatbotButton:hover {
+  background-color: rgba(255, 165, 0, 0.4);
+}

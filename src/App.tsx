@@ -3,12 +3,16 @@ import LandingPage from './components/LandingPage';
 
 import './App.css';
 import FlowerNavbar from './components/FlowerNavbar'; // Import the new FlowerNavbar component
-import BabylonCanvas from './components/Babylonjs';
+
 // Import necessary types from Three.js
 import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Vector3 } from 'three';
 import Scene from './components/Scene';
-// Define props interface for SpaceScene
+import Projects from './components/Projects';
+import Bar from './components/Bar';
+import { Link } from 'react-router-dom'; // Add the import statement for Link
+import EasterEgg from './components/EasterEgg';
+
 interface SpaceSceneProps {
   scale: Vector3;
   position: Vector3;
@@ -24,7 +28,7 @@ interface SpaceSceneProps {
  */
 function App() {
   // State to manage whether the LandingPage has completed loading
-  const [isLandingPageLoaded, setIsLandingPageLoaded] = useState(false);
+  const [isLandingPageLoaded, setIsLandingPageLoaded] = useState(true);
 
   /**
    * Simulates loading of the LandingPage by setting a timeout.
@@ -46,18 +50,56 @@ function App() {
           <LandingPage />
         ) : (
           <>
-            <div style={{ position: 'relative' }}>
-              {/* Place BabylonCanvas first to ensure it's behind the Navbar */}
-              <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                <BabylonCanvas />
-              </div>
-              {/* Place Navbar on top with a higher z-index */}
-              <div style={{ position: 'relative', zIndex: 10 }}>
-                <FlowerNavbar />
-              </div> 
-            </div>
             
+            <Bar 
+            text="Playing in 3D, building in code, and occasionally pondering the meaning of it all. Welcome to my world." 
+            height="30px" 
+            backgroundColor="#000" 
+            textColor="#fff"
+            fontFamily="Courier New"
+            fontSize="24px"
+             />
+            <Bar 
+            text="I'm a software engineer with a MS in Computer Science from New York University, USA || PREVIOUSLY: @Intel-->@RadicalAI-->@Headstarter. CURRENTLY: open to opportunities."
+            height="100px"
+            backgroundColor="black"
+            textColor="violet"
+            fontFamily="Courier New"
+            isQuote={true}
+            fontSize="18px"
+            />
+
+            <FlowerNavbar />
+
+
             <Scene />
+
+
+
+            <Bar 
+            text="In 3D rendering, as in life, the lighting always looks perfect until you actually hit ‘render’—then it’s shadows, glitches, and a deep existential crisis." 
+            height="30px"
+            fontSize="24px"
+            backgroundColor="#000" 
+            
+            fontFamily="Times New Roman"
+            textColor="#fff" />
+
+            
+            <Bar 
+            text="<< UNDER CONSTRUCTION - COMING SOON >>"
+            height="10px" 
+            backgroundColor="orange" 
+            textColor="black"
+            boldText={true}
+            fontFamily="Courier New"
+            fontSize="12px"
+            additionalElement={<EasterEgg word="HEAR THIS" textColor="brown"/>}
+            
+             />
+            {/* <Projects /> */}
+            
+           
           </>
         )}
       </main>
@@ -67,3 +109,9 @@ function App() {
   )
 };
 export default App;
+
+
+
+
+
+

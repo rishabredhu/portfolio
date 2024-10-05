@@ -1,36 +1,36 @@
 import React, { useRef, useEffect, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import Projects from './Projects';
-import Horse from './Horse';
-import SpaceWarpCanvas from './SpaceWarp';
 
 /**
  * Scene component
  * 
  * This component creates a 3D scene using Three.js and loads a .glb file
  * to form a background. It includes debugging information logged to the console
- * to help identify issues with model rendering. The loaded model will hover back and forth.
+ * to help identify issues with model rendering. The loaded model will hover up and down within 30px.
  * Additionally, the model will change direction as the user scrolls down the page.
+ * The model will also rotate slowly.
  */
 const Scene: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
   const modelRef = useRef<THREE.Group | null>(null);
   const scrollDirectionRef = useRef<number>(1); // 1 for down, -1 for up
+  const hoverDirectionRef = useRef<number>(1); // 1 for up, -1 for down
+  const hoverDistanceRef = useRef<number>(0); // Current hover distance
 
   useEffect(() => {
     // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(52, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     mountRef.current?.appendChild(renderer.domElement);
 
     // Camera position
-    camera.position.z = 5;
+    camera.position.z = 7;
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -52,7 +52,7 @@ const Scene: React.FC = () => {
         console.log(`Model loaded. Children count: ${model.children.length}`);
         
         // Adjust the position and scale of the model as needed
-        model.scale.set(1, 1, 1); // Increased scale for a closer view
+        model.scale.set(1.6,1.8,1.8); // Increased scale for a closer view
         model.position.set(0.2, -0.9, 3); // Moved closer to the camera
         model.rotation.set(32, Math.PI / 6, 0.001); // Initial rotation set here
 
@@ -94,11 +94,8 @@ const Scene: React.FC = () => {
     const animate = () => {
       requestAnimationFrame(animate);
       
-      // Make the model hover back and forth
-      if (modelRef.current) {
-        modelRef.current.position.y += scrollDirectionRef.current * 0.0001; // Adjust the speed and range of the hover effect
-      }
-
+      
+     
       renderer.render(scene, camera);
     };
     animate();
@@ -111,16 +108,11 @@ const Scene: React.FC = () => {
     };
     window.addEventListener('resize', handleResize);
 
-    // Handle scroll direction change
-    const handleScroll = (event: WheelEvent) => {
-      scrollDirectionRef.current = event.deltaY > 0 ? 1 : -1;
-    };
-    window.addEventListener('wheel', handleScroll);
-
+    
     // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('wheel', handleScroll);
+      
       mountRef.current?.removeChild(renderer.domElement);
     };
   }, []);
@@ -132,22 +124,8 @@ const Scene: React.FC = () => {
       {error && <div style={{ color: 'red', textAlign: 'center' }}>{error}</div>}
     </div>
 
-      <Projects />
       
-      
-      {/* Add the Horse component */}
-      <div 
-        style={{ 
-          position: 'fixed', 
-          bottom: '-2px', 
-          left: '50px',  // Fixed position
-          cursor: 'pointer',
-          zIndex: 1000,
-          width: '50px',
-          height: '50px'
-        }}>
-        <Horse />
-      </div>
+
     </>    
   );
 };

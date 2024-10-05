@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaLinkedin, FaTwitter, FaFileAlt, FaEnvelope } from 'react-icons/fa';
-
+import EasterEgg from './EasterEgg';
 // Add this type definition at the top of the file
 type NavLink = {
   name: string;
@@ -28,12 +28,12 @@ const links: NavLink[] = [
  */
 export default function FlowerNavbar() {
   return (
-    <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+    <nav className="fixed top-1/2 left-4 transform -translate-y-1/2 z-50">
       <motion.div
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ x: -100, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.6, -0.05, 0.01, 0.99] }}
-        className="flex items-center justify-center space-x-4 bg-black bg-opacity-20 backdrop-blur-lg rounded-full p-2 shadow-lg"
+        className="flex flex-col items-center justify-center space-y-4 bg-black bg-opacity-20 backdrop-blur-lg rounded-full p-2 shadow-lg"
       >
         {links.map((link, index) => (
           <motion.a
@@ -41,7 +41,7 @@ export default function FlowerNavbar() {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative p-2 rounded-full text-white hover:text-blue-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-black"
+            className="relative p-2 rounded-full text-white hover:text-purple-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black"
             whileHover={{ scale: 1.7 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -56,6 +56,10 @@ export default function FlowerNavbar() {
           </motion.a>
         ))}
       </motion.div>
+
+      <EasterEgg word="WOW"
+      textColor="white"
+      boldText={true} />
     </nav>
   )
 }

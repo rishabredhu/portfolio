@@ -2,7 +2,7 @@ import React, { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './styles/index.css';
-import ErrorBoundary from './components_deprecated/ErrorBoundary';
+import ErrorBoundary from './components/ErrorBoundary';
 
 /**
  * Main entry point for the React application.
