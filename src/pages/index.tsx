@@ -1,7 +1,9 @@
 // File: src/pages/index.tsx
 
 import React, { useState, useEffect } from 'react';
-import {LandingPage} from '@/components/LandingPage';
+import LandingPage from '@components/LandingPage';
+
+
 
 const Home: React.FC = () => {
   const [isLandingPageLoaded, setIsLandingPageLoaded] = useState(true);
